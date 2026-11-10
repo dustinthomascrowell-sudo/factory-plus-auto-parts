@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory Plus Auto Parts | Diesel Engine Specialists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0c;--bg2:#111116;--bg3:#18181f;--bg4:#1e1e28;
+  --red:#cc0000;--red2:#e50000;
+  --fg:#f2f2f4;--fg2:#9898a8;--fg3:#5a5a6c;
+  --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'Barlow',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* MARQUEE */
+.marquee-bar{background:var(--red);overflow:hidden;height:34px;display:flex;align-items:center}
+.marquee-track{display:flex;animation:scroll 40s linear infinite;white-space:nowrap;min-width:max-content}
+.marquee-track span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:0 28px;color:#fff;opacity:.95}
+.marquee-track span::after{content:"·";margin-left:28px;opacity:.6}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* NAV */
+nav{background:rgba(10,10,12,0.97);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 max(24px,4vw)}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:32px;height:68px}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;letter-spacing:.5px;line-height:1.1;white-space:nowrap}
+.nav-logo span{display:block;color:var(--red);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;margin:0 auto}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 16px;border-radius:3px;color:var(--fg2);transition:color .2s,background .2s}
+.nav-links a:hover{color:#fff;background:rgba(204,0,0,.15)}
+.nav-cta{background:var(--red);color:#fff!important;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 24px;border-radius:3px;white-space:nowrap;transition:background .2s}
+.nav-cta:hover{background:var(--red2)}
+
+/* HERO */
+.hero{position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.2) 100%)}
+.hero-content{position:relative;z-index:2;padding:80px max(24px,5vw);max-width:720px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(44px,6vw,80px);line-height:.95;letter-spacing:-1px;text-transform:uppercase;margin-bottom:20px}
+.hero-title em{color:var(--red);font-style:normal}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.75);margin-bottom:36px;line-height:1.6;max-width:480px}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+
+/* BRAND TABS */
+.brand-section{background:var(--bg2)}
+.brand-tabs{display:flex;border-bottom:3px solid var(--border)}
+.brand-tab{flex:1;position:relative;overflow:hidden;cursor:pointer;user-select:none;border-bottom:4px solid transparent;margin-bottom:-3px;transition:border-color .25s;min-height:120px}
+.brand-tab.active{border-bottom-color:var(--red)}
+.brand-tab-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .4s;filter:brightness(0.28) saturate(0.5)}
+.brand-tab:hover .brand-tab-bg,.brand-tab.active .brand-tab-bg{transform:scale(1.06);filter:brightness(0.42) saturate(0.7)}
+.brand-tab-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 100%)}
+.brand-tab-content{position:relative;z-index:2;padding:22px 16px 18px;text-align:center}
+.brand-tab-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(15px,2vw,22px);letter-spacing:1px;text-transform:uppercase;color:var(--fg2);transition:color .2s;line-height:1}
+.brand-tab.active .brand-tab-logo,.brand-tab:hover .brand-tab-logo{color:#fff}
+.brand-tab-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-top:5px}
+.brand-tab-engines{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:9px}
+.brand-tab-engines span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:2px;padding:2px 7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);transition:all .2s}
+.brand-tab.active .brand-tab-engines span,.brand-tab:hover .brand-tab-engines span{color:#fff;border-color:rgba(204,0,0,.5);background:rgba(204,0,0,.15)}
+
+/* PRODUCT GRID */
+.brand-panel{display:none;padding:48px max(24px,4vw)}
+.brand-panel.active{display:block}
+.panel-header{max-width:1280px;margin:0 auto 36px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.panel-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;letter-spacing:1px;text-transform:uppercase}
+.panel-title span{color:var(--red)}
+.panel-sub{font-size:14px;color:var(--fg2)}
+.grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(204,0,0,.4);transform:translateY(-2px)}
+.card-img-wrap{aspect-ratio:4/3;overflow:hidden;background:#0d0d10}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .card-img-wrap img{transform:scale(1.04)}
+.card-body{padding:20px 20px 24px;display:flex;flex-direction:column;flex:1}
+.card-body h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+.card-body p{font-size:13px;color:var(--fg2);line-height:1.6;flex:1;margin-bottom:16px}
+.btn-quote{display:inline-block;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;border-radius:3px;transition:background .2s;align-self:flex-start}
+.btn-quote:hover{background:var(--red2)}
+.card-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:#fff;margin-bottom:14px;line-height:1}
+.card-price small{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--fg2);display:block;margin-bottom:3px}
+.card-price em{color:var(--red);font-style:normal}
+.engines-row{max-width:1280px;margin:28px auto 0;background:linear-gradient(135deg,rgba(204,0,0,.12) 0%,rgba(204,0,0,.04) 100%);border:1px solid rgba(204,0,0,.3);border-radius:6px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.engines-row-left h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.engines-row-left h3 em{color:var(--red);font-style:normal}
+.engines-row-left p{font-size:13px;color:var(--fg2);line-height:1.5}
+.engines-row-chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.engines-row-chips span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:6px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg2)}
+.engines-cta{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:12px 24px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:background .2s}
+.engines-cta:hover{background:var(--red2)}
+
+/* ABOUT */
+.about{padding:80px max(24px,4vw);background:var(--bg)}
+.about-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-img-wrap{border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+.about-img-wrap img{width:100%;height:420px;object-fit:cover}
+.about-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.about-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);line-height:1;text-transform:uppercase;margin-bottom:20px}
+.about-title em{color:var(--red);font-style:normal}
+.about-body{color:var(--fg2);line-height:1.75;font-size:15px;margin-bottom:24px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.stat{border-top:2px solid var(--red);padding-top:14px}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:#fff}
+.stat-label{font-size:12px;color:var(--fg2);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+/* CONTACT */
+.contact{padding:80px max(24px,4vw);background:var(--bg2)}
+#contact{scroll-margin-top:80px}
+.contact-inner{max-width:1100px;margin:0 auto}
+.contact-header{text-align:center;margin-bottom:48px}
+.contact-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);text-transform:uppercase;letter-spacing:1px}
+.contact-header h2 span{color:var(--red)}
+.contact-header p{color:var(--fg2);margin-top:10px;font-size:15px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.info-cards{display:flex;flex-direction:column;gap:16px}
+.info-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:20px 24px}
+.info-card-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.info-card-val{font-size:15px;color:#fff;line-height:1.7}
+.info-card-val a{color:#fff}
+.form-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:32px}
+.form-wrap h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--fg2)}
+.form-group input,.form-group select,.form-group textarea{background:var(--bg4);border:1px solid var(--border2);border-radius:3px;padding:11px 14px;color:#fff;font-family:'Barlow',sans-serif;font-size:14px;width:100%;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red)}
+.form-group select option{background:var(--bg4)}
+.form-group textarea{resize:vertical;min-height:90px}
+.btn-submit{width:100%;background:var(--red);color:#fff;border:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px;border-radius:3px;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:var(--red2)}
+
+/* VIN DECODER */
+.vin-section{padding:72px max(24px,4vw);background:var(--bg)}
+.vin-inner{max-width:860px;margin:0 auto;text-align:center}
+.vin-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.vin-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);text-transform:uppercase;line-height:1;margin-bottom:12px}
+.vin-title em{color:var(--red);font-style:normal}
+.vin-desc{color:var(--fg2);font-size:15px;margin-bottom:36px}
+.vin-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:36px 32px}
+.vin-input-row{display:flex;gap:12px;margin-bottom:0}
+.vin-input{flex:1;background:var(--bg4);border:2px solid var(--border);border-radius:4px;padding:14px 18px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:20px;letter-spacing:4px;text-transform:uppercase;outline:none;transition:border-color .2s;min-width:0}
+.vin-input::placeholder{color:var(--fg3);letter-spacing:2px;font-size:16px}
+.vin-input:focus{border-color:var(--red)}
+.vin-btn{background:var(--red);color:#fff;border:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;border-radius:4px;cursor:pointer;white-space:nowrap;transition:background .2s}
+.vin-btn:hover{background:var(--red2)}
+.vin-result{margin-top:28px;display:none}
+.vin-result.show{display:block}
+.vin-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.vin-chip{background:var(--bg4);border:1px solid var(--border);border-radius:4px;padding:14px 16px;text-align:left}
+.vin-chip-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+.vin-chip-val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#fff}
+.vin-parts-btn{display:inline-block;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:2px;text-transform:uppercase;padding:12px 28px;border-radius:4px;cursor:pointer;border:none;transition:background .2s}
+.vin-parts-btn:hover{background:var(--red2)}
+.vin-error{color:#ff6b6b;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;margin-top:14px;display:none}
+.vin-error.show{display:block}
+/* FOOTER */
+footer{background:#050507;border-top:1px solid var(--border);padding:32px max(24px,4vw);text-align:center}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;margin-bottom:4px}
+.footer-logo span{color:var(--red)}
+.footer-info{font-size:13px;color:var(--fg3);margin-top:8px;line-height:1.8}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .grid{grid-template-columns:1fr}
+  .about-inner{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .about-img-wrap img{height:260px}
+}
+</style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>RAM 1500</span><span>RAM 2500</span><span>RAM 3500</span>
+    <span>6.0L POWERSTROKE</span><span>6.4L POWERSTROKE</span><span>6.7L POWERSTROKE</span>
+    <span>5.9L CUMMINS</span><span>6.7L CUMMINS</span>
+    <span>LB7 DURAMAX</span><span>LBZ DURAMAX</span><span>LML DURAMAX</span>
+    <span>REMAN ENGINES</span><span>SHIPS NATIONWIDE</span>
+    <span>RAM 1500</span><span>RAM 2500</span><span>RAM 3500</span>
+    <span>6.0L POWERSTROKE</span><span>6.4L POWERSTROKE</span><span>6.7L POWERSTROKE</span>
+    <span>5.9L CUMMINS</span><span>6.7L CUMMINS</span>
+    <span>LB7 DURAMAX</span><span>LBZ DURAMAX</span><span>LML DURAMAX</span>
+    <span>REMAN ENGINES</span><span>SHIPS NATIONWIDE</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">FACTORY PLUS<span>Auto Parts</span></div>
+    <div class="nav-links">
+      <a href="#parts">Shop Parts</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="tel:9519530600" class="nav-cta">&#9990; 951.953.0600</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img class="hero-bg" src="/img/img00.jpg" alt="Factory Plus Auto Parts">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Inland Empire's Diesel Specialists</div>
+    <h1 class="hero-title">DIESEL PARTS.<br><em>REAL</em> EXPERTISE.</h1>
+    <p class="hero-sub">Remanufactured engines and components for Ford Power Stroke, Ram Cummins, and GM Duramax. Wholesale pricing. Ships anywhere in the USA.</p>
+    <div class="hero-badges">
+      <div class="hero-badge">Power Stroke</div>
+      <div class="hero-badge">Cummins</div>
+      <div class="hero-badge">Duramax</div>
+      <div class="hero-badge">Ships Nationwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND TABS & PRODUCT GRID -->
+<section class="brand-section" id="parts">
+  <div class="brand-tabs">
+    <div class="brand-tab active" onclick="showBrand('ford')">
+      <img class="brand-tab-bg" src="/img/img01.png" alt="">
+      <div class="brand-tab-overlay"></div>
+      <div class="brand-tab-content">
+        <div class="brand-tab-logo">Ford Power Stroke</div>
+        <div class="brand-tab-sub">Diesel Parts</div>
+        <div class="brand-tab-engines"><span>6.0L</span><span>6.4L</span><span>6.7L</span></div>
+      </div>
+    </div>
+    <div class="brand-tab" onclick="showBrand('ram')">
+      <img class="brand-tab-bg" src="/img/img02.png" alt="">
+      <div class="brand-tab-overlay"></div>
+      <div class="brand-tab-content">
+        <div class="brand-tab-logo">Ram Cummins</div>
+        <div class="brand-tab-sub">Diesel Parts</div>
+        <div class="brand-tab-engines"><span>5.9L</span><span>6.7L</span></div>
+      </div>
+    </div>
+    <div class="brand-tab" onclick="showBrand('gm')">
+      <img class="brand-tab-bg" src="/img/img03.jpg" alt="">
+      <div class="brand-tab-overlay"></div>
+      <div class="brand-tab-content">
+        <div class="brand-tab-logo">GM Duramax</div>
+        <div class="brand-tab-sub">Diesel Parts</div>
+        <div class="brand-tab-engines"><span>LB7</span><span>LBZ</span><span>LML</span><span>L5P</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-panel active" id="panel-ford">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span>Ford</span> Power Stroke</div>
+        <div class="panel-sub">6.0L · 6.4L · 6.7L — Reman components &amp; complete engines</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img04.png" alt="Fuel Injectors" loading="lazy"></div>
+        <div class="card-body"><h3>Fuel Injectors</h3><p>6.0L / 6.4L / 6.7L Power Stroke reman injectors. Flow-tested &amp; OEM-spec.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img05.png" alt="Turbocharger" loading="lazy"></div>
+        <div class="card-body"><h3>Turbocharger</h3><p>Drop-in replacement turbos for 6.0L, 6.4L, 6.7L. Full warranty.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img06.jpg" alt="EGR Cooler" loading="lazy"></div>
+        <div class="card-body"><h3>EGR Cooler</h3><p>Upgraded EGR coolers — stop coolant loss before it cracks your block.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img07.jpg" alt="FICM Module" loading="lazy"></div>
+        <div class="card-body"><h3>FICM Module</h3><p>Fuel Injector Control Module, reconditioned to factory output specs.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img08.jpg" alt="High-Pressure Oil Pump" loading="lazy"></div>
+        <div class="card-body"><h3>High-Pressure Oil Pump</h3><p>HPOP rebuilt for 6.0L Power Stroke — the root fix, not a Band-Aid.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img09.jpg" alt="6.0L / 6.4L Long Block" loading="lazy"></div>
+        <div class="card-body"><h3>6.0L / 6.4L Long Block</h3><p>Complete long block with updated head bolts, EGR delete option available.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-panel" id="panel-ram">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span>Ram</span> Cummins</div>
+        <div class="panel-sub">5.9L · 6.7L — Injectors, turbos, pumps &amp; long blocks</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img10.png" alt="Fuel Injectors" loading="lazy"></div>
+        <div class="card-body"><h3>Fuel Injectors</h3><p>5.9L &amp; 6.7L Cummins injectors. Reman or new, matched sets available.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img11.png" alt="Turbocharger" loading="lazy"></div>
+        <div class="card-body"><h3>Turbocharger</h3><p>HE351CW &amp; HE300VG replacement turbos. Fits 5.9L and 6.7L Cummins.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img12.jpg" alt="VP44 / CP3 Pump" loading="lazy"></div>
+        <div class="card-body"><h3>VP44 / CP3 Pump</h3><p>Injection pumps for 24-valve 5.9L and 6.7L — rebuilt to OEM spec.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img13.jpg" alt="Cylinder Head" loading="lazy"></div>
+        <div class="card-body"><h3>Cylinder Head</h3><p>Fully machined Cummins cylinder heads — pressure-tested and ready to bolt.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img14.jpg" alt="Lift Pump" loading="lazy"></div>
+        <div class="card-body"><h3>Lift Pump</h3><p>FASS &amp; AirDog-compatible lift pump upgrades. Never starve your CP3 again.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img15.jpg" alt="5.9L / 6.7L Long Block" loading="lazy"></div>
+        <div class="card-body"><h3>5.9L / 6.7L Long Block</h3><p>Complete Cummins long block. Reman with updated pistons &amp; rings.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-panel" id="panel-gm">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span>GM</span> Duramax</div>
+        <div class="panel-sub">LB7 · LLY · LBZ · LMM · LML — Full component lineup</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img16.png" alt="Fuel Injectors" loading="lazy"></div>
+        <div class="card-body"><h3>Fuel Injectors</h3><p>LB7, LLY, LBZ, LMM, LML injectors — reman, flow-matched sets.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img17.png" alt="Turbocharger" loading="lazy"></div>
+        <div class="card-body"><h3>Turbocharger</h3><p>LB7–LML Duramax turbos. Variable-vane units rebuilt and actuator-tested.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img18.jpg" alt="EGR Cooler" loading="lazy"></div>
+        <div class="card-body"><h3>EGR Cooler</h3><p>Duramax EGR coolers — prevents coolant leaks that kill heads.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img19.jpg" alt="LB7 Injector Cup Kit" loading="lazy"></div>
+        <div class="card-body"><h3>LB7 Injector Cup Kit</h3><p>Full injector cup replacement kit — stops the leak at the source.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img20.jpg" alt="DPF Filter" loading="lazy"></div>
+        <div class="card-body"><h3>DPF Filter</h3><p>Direct-fit DPF replacement for LMM/LML. Reconditioned or new.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrap"><img src="/img/img21.jpg" alt="6.6L Long Block" loading="lazy"></div>
+        <div class="card-body"><h3>6.6L Long Block</h3><p>Complete Duramax long block. All platforms LB7–L5P. Remanufactured.</p><a href="#contact" class="btn-quote">Get Quote</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIN DECODER -->
+<section class="vin-section">
+  <div class="vin-inner">
+    <div class="vin-label">Free Tool</div>
+    <h2 class="vin-title">VIN <em>Decoder</em></h2>
+    <p class="vin-desc">Enter your 17-digit VIN to identify your truck and find compatible diesel parts.</p>
+    <div class="vin-box">
+      <div class="vin-input-row">
+        <input class="vin-input" id="vinInput" maxlength="17" placeholder="Enter 17-digit VIN..." oninput="this.value=this.value.toUpperCase()">
+        <button class="vin-btn" onclick="decodeVIN()">Decode</button>
+      </div>
+      <div class="vin-error" id="vinError"></div>
+      <div class="vin-result" id="vinResult">
+        <div class="vin-result-grid" id="vinGrid"></div>
+        <button class="vin-parts-btn" id="vinPartsBtn">View Compatible Parts &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img src="/img/img22.jpg" alt="Diesel Engine Specialists">
+    </div>
+    <div class="about-text">
+      <div class="about-label">About Factory Plus</div>
+      <h2 class="about-title">Diesel <em>Experts</em><br>Since Day One</h2>
+      <p class="about-body">Factory Plus Auto Parts has been the Inland Empire's most trusted source for remanufactured diesel engines and components for over 20 years. We stock Power Stroke, Cummins, and Duramax parts — wholesale and retail — serving shops, fleets, and owner-operators across IE, OC, and LA.</p>
+      <p class="about-body">Every part we sell is fully inspected, tested to OEM specifications, and backed by a real warranty. We're diesel technicians first — we know what fails and why, and we won't sell you something that won't last.</p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Years in Business</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Engine Platforms</div></div>
+        <div class="stat"><div class="stat-num">50</div><div class="stat-label">States Shipped</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-header">
+      <h2>Get a <span>Quote</span></h2>
+      <p>Tell us what you need — we'll get back to you fast with pricing and availability.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-label">Phone</div>
+          <div class="info-card-val"><a href="tel:9519530600">951.953.0600</a></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Email</div>
+          <div class="info-card-val">arbi@factoryplusautoparts.com</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Business Hours</div>
+          <div class="info-card-val">Monday – Saturday: 10:00 AM – 6:00 PM<br>Sunday: Closed</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Service Area</div>
+          <div class="info-card-val">Inland Empire · Orange County<br>Los Angeles · Ships Nationwide</div>
+        </div>
+      </div>
+      <div class="form-wrap">
+        <h3>Request a Quote</h3>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="form-group">
+          <label>Part Needed</label>
+          <select>
+            <option value="">Select a part type...</option>
+            <option>Fuel Injectors</option>
+            <option>Turbocharger</option>
+            <option>EGR Cooler</option>
+            <option>FICM</option>
+            <option>Fuel Pump / HPOP</option>
+            <option>Long Block Engine</option>
+            <option>DPF Filter</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Vehicle (Year, Make, Model)</label><input type="text" placeholder="e.g. 2005 Ford F-250 6.0L"></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Describe what you need..."></textarea></div>
+        <button class="btn-submit" type="button">Send Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FACTORY PLUS <span>AUTO PARTS</span></div>
+  <div class="footer-info">
+    &copy; 2024 Factory Plus Auto Parts &nbsp;&middot;&nbsp; Serving IE, OC &amp; LA &nbsp;&middot;&nbsp; Ships Nationwide<br>
+    951.953.0600 &nbsp;&middot;&nbsp; arbi@factoryplusautoparts.com
+  </div>
+</footer>
+
+<script>
+const VIN_YEAR_MAP = {A:[1980,2010],B:[1981,2011],C:[1982,2012],D:[1983,2013],E:[1984,2014],F:[1985,2015],G:[1986,2016],H:[1987,2017],J:[1988,2018],K:[1989,2019],L:[1990,2020],M:[1991,2021],N:[1992,2022],P:[1993,2023],R:[1994,2024],S:[1995,2025],T:[1996,2026],V:[1997],W:[1998],X:[1999],Y:[2000],1:[2001],2:[2002],3:[2003],4:[2004],5:[2005],6:[2006],7:[2007],8:[2008],9:[2009]};
+const WMI_MAP = {'1FT':'Ford','1FD':'Ford','1FC':'Ford','2FT':'Ford','3FT':'Ford','1C6':'Ram','1C4':'Ram','3C6':'Ram','3C4':'Ram','1D7':'Ram','3D7':'Ram','2C3':'Ram','1GC':'GM Chevy','2GC':'GM Chevy','1GT':'GM GMC','2GT':'GM GMC','3GT':'GM GMC'};
+function decodeVIN(){
+  var vin=document.getElementById('vinInput').value.trim().toUpperCase();
+  var err=document.getElementById('vinError');
+  var res=document.getElementById('vinResult');
+  err.className='vin-error'; res.className='vin-result';
+  if(vin.length!==17){err.textContent='VIN must be exactly 17 characters.';err.className='vin-error show';return;}
+  if(/[IOQ]/.test(vin)){err.textContent='VIN cannot contain I, O, or Q.';err.className='vin-error show';return;}
+  var wmi=vin.substring(0,3);
+  var make=WMI_MAP[wmi]||WMI_MAP[wmi.substring(0,2)]||null;
+  var yearChar=vin[9];
+  var yArr=VIN_YEAR_MAP[yearChar]||[];
+  var year=yArr.length>1?(yArr[0]<2010?yArr[1]:yArr[0]):yArr[0];
+  var brand=null;
+  if(make&&make.indexOf('Ford')>-1)brand='ford';
+  else if(make&&make.indexOf('Ram')>-1)brand='ram';
+  else if(make&&(make.indexOf('GM')>-1||make.indexOf('Chevy')>-1))brand='gm';
+  var engDesc='See specs below';
+  if(brand==='ford'){if(year>=2011)engDesc='6.7L Power Stroke';else if(year>=2008)engDesc='6.4L Power Stroke';else if(year>=2003)engDesc='6.0L Power Stroke';else if(year>=1999)engDesc='7.3L Power Stroke';}
+  else if(brand==='ram'){engDesc=year>=2007?'6.7L Cummins':'5.9L Cummins';}
+  else if(brand==='gm'){engDesc='6.6L Duramax';}
+  var chips=[{label:'Year',val:year||'Unknown'},{label:'Make',val:make||'Unknown'},{label:'Engine',val:engDesc},{label:'WMI',val:wmi}];
+  var grid=document.getElementById('vinGrid');
+  grid.innerHTML=chips.map(c=>'<div class="vin-chip"><div class="vin-chip-label">'+c.label+'</div><div class="vin-chip-val">'+c.val+'</div></div>').join('');
+  var btn=document.getElementById('vinPartsBtn');
+  if(brand){btn.style.display='inline-block';btn.onclick=function(){showBrand(brand);document.getElementById('parts').scrollIntoView({behavior:'smooth'});};btn.textContent='View '+(brand==='ford'?'Ford Power Stroke':brand==='ram'?'Ram Cummins':'GM Duramax')+' Parts →';}else{btn.style.display='none';}
+  res.className='vin-result show';
+}
+document.getElementById('vinInput').addEventListener('keydown',function(e){if(e.key==='Enter')decodeVIN();});
+
+(function(){
+  var PRICES={ford:[{from:'$254',label:'Per Injector'},{from:'$569',label:'EGR Cooler Kit'},{from:'$399',label:'FICM Module'},{from:'$189',label:'Oil Cooler'},{from:'$299',label:'EGR Valve'},{from:'$124',label:'Glow Plugs (Set)'}],ram:[{from:'$3,072',label:'Injector Set (6)'},{from:'$1,529',label:'DPF Filter'},{from:'$4,499',label:'CP3 Fuel Pump'},{from:'$349',label:'EGR Valve'},{from:'$229',label:'Lift Pump'},{from:'$189',label:'Fuel Filter Kit'}],gm:[{from:'$149',label:'Per Injector'},{from:'$1,495',label:'DPF Filter'},{from:'$89',label:'Fuel Filter Delete'},{from:'$599',label:'EGR Cooler'},{from:'$279',label:'Turbo Up-Pipe'},{from:'$219',label:'Glow Plug Module'}]};
+  var ENGINE_SPECS={ford:{specs:['6.0L','6.4L','6.7L'],desc:'Ford Power Stroke long block & complete drop-in engines, all years.'},ram:{specs:['5.9L 12V','5.9L 24V','6.7L'],desc:'Cummins B-series remanufactured engines, complete or long block.'},gm:{specs:['LB7','LBZ','LML','L5P'],desc:'Duramax remanufactured complete engines, all generations.'}};
+  ['ford','ram','gm'].forEach(function(brand){
+    var panel=document.getElementById('panel-'+brand);
+    if(!panel)return;
+    var cards=panel.querySelectorAll('.card');
+    var prices=PRICES[brand];
+    cards.forEach(function(card,i){
+      if(!prices[i])return;
+      var body=card.querySelector('.card-body');
+      var btn=card.querySelector('.btn-quote');
+      if(!body||!btn)return;
+      var el=document.createElement('div');
+      el.className='card-price';
+      el.innerHTML='<small>Starting From</small><em>'+prices[i].from+'</em> <span style="font-size:11px;color:var(--fg3);font-weight:600;letter-spacing:1px;text-transform:uppercase;">'+prices[i].label+'</span>';
+      body.insertBefore(el,btn);
+    });
+    var grid=panel.querySelector('.grid');
+    if(!grid)return;
+    var spec=ENGINE_SPECS[brand];
+    var row=document.createElement('div');
+    row.className='engines-row';
+    row.innerHTML='<div class="engines-row-left"><h3>Complete <em>Engines</em></h3><p>'+spec.desc+'</p></div><div class="engines-row-chips">'+spec.specs.map(function(s){return'<span>'+s+'</span>';}).join('')+'</div><a href="#contact" class="engines-cta">Call for Quote &rarr;</a>';
+    grid.parentNode.insertBefore(row,grid.nextSibling);
+  });
+})();
+
+function showBrand(brand){
+  document.querySelectorAll('.brand-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.brand-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.brand-tab').forEach(t=>{if(t.getAttribute('onclick')==="showBrand('"+brand+"')")t.classList.add('active');});
+  document.getElementById('panel-'+brand).classList.add('active');
+}
+</script>
+
+</body>
+</html>
